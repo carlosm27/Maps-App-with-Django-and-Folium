@@ -21,16 +21,20 @@ def coordinates_form(request):
     return render(request, 'maps/maps_form.html', context)
 
 def maps(request):
-    coordenadas = list(Coordenadas.objects.all().values_list('lat','lon'))[0]
-
+    coordenadas = list(Coordenadas.objects.values_list('lat','lon'))[-1]
 
     map = folium.Map(coordenadas)
     folium.Marker(coordenadas).add_to(map)
+    folium.raster_layers.TileLayer('Stamen Terrain').add_to(map)
+    folium.raster_layers.TileLayer('Stamen Toner').add_to(map)
+    folium.raster_layers.TileLayer('Stamen Watercolor').add_to(map)
+    folium.LayerControl().add_to(map)
 
 
     map = map._repr_html_()
     context = {
-        'map': map
+        'map': map,
+
     }
     return render(request, 'maps/maps.html', context)
 
