@@ -1,22 +1,14 @@
-{% extends 'maps/base.html' %}
-
+<!DOCTYPE html>
+<html lang="en">
 {% block content %}
-
-<div class="header-bar">
-    <h3>Map</h3>
-</div>
-
-<div id="expenses-add-wrapper">
-    <a id="add-link" href="{% url 'coordinates-form' %}">&#x2b;</a>
-</div>
-
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+</head>
 <body>
-
-    <div class="table">{{map|safe}}</div>
-
-
-
+  <div> {{ map | safe }}</div>
 
 </body>
+</html>
 
 {% endblock %}
